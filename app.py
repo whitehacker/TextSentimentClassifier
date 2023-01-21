@@ -1,10 +1,13 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request
 import openai
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 app = Flask(__name__)
 
-# Now let's use the credentials to make a call to the API. You need an API key and you can get it here: https://beta.openai.com/account/api-keys
-openai.api_key = "You_Secret_Key"
+# Now let's use the credentials to make a call to the API.
+openai.api_key = os.environ.get("api_key")
 
 @app.route('/', methods=['GET', 'POST'])
 def classify_text():
